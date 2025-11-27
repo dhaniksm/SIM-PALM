@@ -4,41 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class PageController extends Controller
 {
+    public function login() {
+        return view('pages.login');
+    }
+
+    public function processLogin(Request $request) {
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('dashboard');
+        }
+
+        return back()->withErrors([
+            'username' => 'Username atau password salah'
+        ]);
+    }
+
     public function dashboard() {
         return view('pages.dashboard');
     }
 
-    public function dataPetani() {
-        return view('pages.data.petani');
+    public function data() {
+        return view('pages.data');
     }
 
-    public function dataLahan() {
-        return view('pages.data.lahan');
-    }
-
-    public function dataTanaman() {
-        return view('pages.data.tanaman');
-    }
-
-    public function pemupukan() {
-        return view('pages.operasional.pemupukan');
-    }
-
-    public function panen() {
-        return view('pages.operasional.panen');
-    }
-
-    public function perawatan() {
-        return view('pages.operasional.perawatan');
+    public function operasional() {
+        return view('pages.operasional.index');
     }
 
     public function laporan() {
         return view('pages.laporan');
     }
 
-    public function kalender() {
-        return view('pages.kalender');
+    public function jadwal() {
+        return view('pages.jadwal');
     }
 }
