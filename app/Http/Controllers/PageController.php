@@ -11,22 +11,6 @@ class PageController extends Controller
         return view('pages.login');
     }
 
-    public function processLogin(Request $request) {
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->route('dashboard');
-        }
-
-        return back()->withErrors([
-            'username' => 'Username atau password salah'
-        ]);
-    }
-
     public function dashboard() {
         return view('pages.dashboard');
     }
