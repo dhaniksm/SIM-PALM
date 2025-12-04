@@ -4,53 +4,61 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    // tampilkan form login
+    // TAMPILKAN HALAMAN LOGIN
     public function showLogin()
     {
-        // kalau sudah login, jangan bisa buka login lagi
-        if (Auth::check()) {
-            return redirect()->route('dashboard');
-        }
-
-        return view('auth.login');
+        return view('pages.login');
     }
 
-    // proses kirim form login
+    // PROSES LOGIN
     public function loginProcess(Request $request)
     {
-        $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required',
-        ]);
+        // VALIDASI
+        $request->validate(
+            [
+                'username' => 'required|string',
+                'password' => 'required|string|min:4',
+            ],
+            [
+                'username.required' => 'Username wajib diisi.',
+                'password.required' => 'Password wajib diisi.',
+                'password.min' => 'Password minimal 4 karakter.',
+            ]
+        );
 
-        // ambil hanya email & password
-        $credentials = $request->only('email', 'password');
+        // CEK USER
+        $user = User::where('username', $request->username)->first();
 
-        // coba login
-        if (Auth::attempt($credentials)) {
-            // regenerate session untuk keamanan
-            $request->session()->regenerate();
-
-            return redirect()->route('dashboard');
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'username' => 'Username atau password salah.',
+            ]);
         }
 
-        // kalau gagal
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->withInput();
+        // LOGIN USER
+        Auth::login($user);
+
+        // REDIRECT KE DASHBOARD
+        return redirect()->route('dashboard');
     }
 
-    // logout
+    // LOGOUT
     public function logout(Request $request)
     {
         Auth::logout();
 
+        // INVALSIDATE SESSION
         $request->session()->invalidate();
+
+        // REGENERATE TOKEN
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Berhasil logout.');
     }
 }
