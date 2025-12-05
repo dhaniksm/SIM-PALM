@@ -12,24 +12,19 @@ Route::resource('petani', PetaniController::class);
 Route::resource('lahan', LahanController::class);
 Route::resource('tanaman', TanamanController::class);
 
-Route::get('/', [PageController::class, 'dashboard'])->name('dashboard');
 Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 Route::get('/login', [AuthController::class, 'showLogin'])->middleware('guest')->name('login');
 Route::post('/login/process', [AuthController::class, 'loginProcess'])->name('processLogin');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-//     Route::get('/data', [PageController::class, 'data']);
-//     Route::get('/operasional', [PageController::class, 'operasional']);
-//     Route::get('/laporan', [PageController::class, 'laporan']);
-//     Route::get('/jadwal', [PageController::class, 'jadwal']);
-// });
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+    Route::get('/data', [PageController::class, 'data']);
+    Route::get('/operasional', [PageController::class, 'operasional']);
+    Route::get('/laporan', [PageController::class, 'laporan']);
+    Route::get('/kalender', [PageController::class, 'kalender']);
+});
 
-Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-
-Route::get('/laporan', [PageController::class, 'laporan'])->name('laporan');
-Route::get('/kalender', [PageController::class, 'kalender'])->name('kalender');
 Route::prefix('operasional')->group(function () {
     Route::get('/', [OperasionalController::class, 'index'])->name('operasional.index');
     Route::get('/create', [OperasionalController::class, 'create'])->name('operasional.create');

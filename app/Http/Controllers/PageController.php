@@ -4,11 +4,6 @@ namespace App\Http\Controllers;
 
 class PageController extends Controller
 {
-    public function home()
-    {
-        return view('pages.home');
-    }
-
     public function welcome()
     {
         return view('pages.welcome');
@@ -21,7 +16,7 @@ class PageController extends Controller
 
     public function data()
     {
-        return view('pages.data');
+        return view('pages.petani');
     }
 
     public function operasional()
