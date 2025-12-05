@@ -1,5 +1,7 @@
 <?php 
 
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Petani;
 use App\Models\Tanaman;
@@ -10,12 +12,18 @@ class Lahan extends Model
 
     public function petani()
     {
-        return $this->belongsTo(Petani::class);
+        return $this->belongsTo(Petani::class, 'petani_id');
     }
 
-    public function tanaman()
+    public function lahan()
     {
-        return $this->hasMany(Tanaman::class);
+        return $this->belongsTo(Lahan::class);
     }
+
+    public function operasional()
+    {
+        return $this->hasMany(Operasional::class, 'lahan_id');
+    }
+
 }
 ?>

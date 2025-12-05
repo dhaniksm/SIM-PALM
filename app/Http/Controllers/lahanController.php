@@ -1,18 +1,17 @@
 <?php   
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use App\Models\Lahan;
 use App\Models\Petani;
+
 class LahanController extends Controller
 {
     public function index() {
-        $data = Lahan::with('petani')->get();
-        return view('lahan.index', compact('data'));
-    }
-
-    public function create() {
+        $lahan = Lahan::with('petani')->paginate(10);
         $petani = Petani::all();
-        return view('lahan.create', compact('petani'));
+        return view('pages.manajemen.lahan.index', compact('lahan', 'petani'));
     }
 
     public function store(Request $req) {
@@ -23,7 +22,7 @@ class LahanController extends Controller
     public function edit($id) {
         $lahan = Lahan::findOrFail($id);
         $petani = Petani::all();
-        return view('lahan.edit', compact('lahan','petani'));
+        return view('pages.manajemen.lahan.edit', compact('lahan','petani'));
     }
 
     public function update(Request $req, $id) {
