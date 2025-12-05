@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
 @section('content')
 <div class="p-6">
@@ -19,10 +19,10 @@
         </div>
 
         <div>
-            <label class="block mb-1 font-medium">Petugas</label>
-            <select name="petugas_id" class="w-full border rounded p-2">
-                @foreach($petugas as $p)
-                <option value="{{ $p->id }}" {{ $data->petugas_id == $p->id ? 'selected' : '' }}>
+            <label class="block mb-1 font-medium">Petani</label>
+            <select name="petani_id" class="w-full border rounded p-2">
+                @foreach($petani as $p)
+                <option value="{{ $p->id }}" {{ $data->petani_id == $p->id ? 'selected' : '' }}>
                     {{ $p->nama }}
                 </option>
                 @endforeach
@@ -34,7 +34,7 @@
             <select name="lahan_id" class="w-full border rounded p-2">
                 @foreach($lahan as $l)
                 <option value="{{ $l->id }}" {{ $data->lahan_id == $l->id ? 'selected' : '' }}>
-                    {{ $l->nama_lahan }}
+                    {{ $l->kode_lahan }}
                 </option>
                 @endforeach
             </select>

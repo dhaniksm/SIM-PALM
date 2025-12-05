@@ -15,7 +15,7 @@
     </main>
 
     <footer class="text-center py-4 text-gray-500">
-        © 2025 ARENA System. All rights reserved.
+        © 2025 SIM-PALM. All rights reserved.
     </footer>
 
     @stack('scripts')

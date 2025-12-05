@@ -14,7 +14,7 @@
         <thead class="bg-gray-100">
             <tr>
                 <th class="p-2 border">Kategori</th>
-                <th class="p-2 border">Petugas</th>
+                <th class="p-2 border">Petani</th>
                 <th class="p-2 border">Lokasi</th>
                 <th class="p-2 border">Tanggal</th>
                 <th class="p-2 border">Keterangan</th>
@@ -25,7 +25,7 @@
             @foreach($data as $row)
             <tr>
                 <td class="p-2 border">{{ $row->kategori }}</td>
-                <td class="p-2 border">{{ $row->petugas }}</td>
+                <td class="p-2 border">{{ $row->petani }}</td>
                 <td class="p-2 border">{{ $row->lokasi }}</td>
                 <td class="p-2 border">{{ $row->tanggal }}</td>
                 <td class="p-2 border">{{ $row->keterangan }}</td>

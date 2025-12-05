@@ -14,19 +14,8 @@ class PageController extends Controller
         return view('pages.dashboard');
     }
 
-    public function data()
-    {
-        return view('pages.petani');
-    }
-
-    public function operasional()
-    {
-        return view('pages.operasional');
-    }
-
-    public function laporan()
-    {
-        return view('pages.laporan');
+    public function index() {
+        return view('pages.manajemen.index');
     }
 
     public function jadwal()

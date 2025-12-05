@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('operasionals', function (Blueprint $table) {
         $table->id();
         $table->string('kategori');
-        $table->string('petugas');
+        $table->string('petani');
         $table->string('lokasi');
         $table->date('tanggal');
         $table->string('keterangan')->nullable();

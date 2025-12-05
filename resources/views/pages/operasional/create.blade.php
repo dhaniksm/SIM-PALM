@@ -17,19 +17,19 @@
         </div>
 
         <div class="mb-4">
-            <label class="block mb-1">Petugas</label>
-            <select name="petugas" class="w-full border rounded p-2">
-                @foreach($petugas as $p)
-                <option value="{{ $p }}">{{ $p }}</option>
+            <label class="block mb-1">Petani</label>
+            <select name="petani" class="w-full border p-2 rounded">
+                @foreach($petani as $p)
+                <option value="{{ $p->id }}">{{ $p->nama }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="mb-4">
             <label class="block mb-1">Lokasi</label>
-            <select name="lokasi" class="w-full border rounded p-2">
-                @foreach($lokasi as $l)
-                <option value="{{ $l }}">{{ $l }}</option>
+            <select name="lokasi" class="w-full border p-2 rounded">
+                @foreach($lahan as $l)
+                <option value="{{ $l->id }}">{{ $l->kode_lahan }}</option>
                 @endforeach
             </select>
         </div>

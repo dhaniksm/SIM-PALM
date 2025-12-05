@@ -1,16 +1,20 @@
 <?php 
 
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Lahan;
 use App\Models\Petani;
 
 class Tanaman extends Model
 {
-    protected $fillable = ['lahan_id', 'jenis', 'jumlah_pohon'];
+    protected $table = 'tanamans';
+    
+    protected $fillable = ['lahan_id', 'jenis', 'jumlah'];
 
-    public function lahan()
+    public function tanaman()
     {
-        return $this->belongsTo(Lahan::class);
+        return $this->hasMany(Tanaman::class);
     }
 }
 

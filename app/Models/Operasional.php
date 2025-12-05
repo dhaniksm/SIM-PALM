@@ -8,9 +8,19 @@ class Operasional extends Model
 {
     protected $fillable = [
         'kategori',
-        'petugas',
+        'petani',
         'lokasi',
         'tanggal',
         'keterangan'
     ];
+
+    public function petani()
+    {
+        return $this->belongsTo(Petani::class);
+    }
+
+    public function lahan()
+    {
+        return $this->belongsTo(Lahan::class);
+    }
 }

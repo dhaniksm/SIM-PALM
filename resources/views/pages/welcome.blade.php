@@ -3,7 +3,7 @@
 @section('content')
 
 <x-hero 
-    title="Sistem Manajemen Organisasi Modern"
+    title="Sistem Manajemen Kebun Kelapa Sawit"
     subtitle="Kelola anggota, kegiatan, alat, dan laporan dalam satu dashboard yang terintegrasi."
     button="Masuk ke Sistem"
 />

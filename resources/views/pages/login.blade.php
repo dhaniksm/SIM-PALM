@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.landing')
 
 @section('title', 'Login')
 
@@ -21,7 +21,7 @@
 
         {{-- SUCCESS MESSAGE --}}
         @if (session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+            <div class="bg-green-100 border border-primary-light text-primary-dark px-4 py-3 rounded mb-4">
                 {{ session('success') }}
             </div>
         @endif
@@ -42,7 +42,7 @@
             </div>
 
             <button type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-semibold transition">
+                class="w-full bg-primary hover:bg-primary-dark text-white py-2.5 rounded-lg font-semibold transition">
                 Masuk
             </button>
         </form>
