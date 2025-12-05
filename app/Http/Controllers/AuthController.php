@@ -35,9 +35,15 @@ class AuthController extends Controller
         // CEK USER
         $user = User::where('username', $request->username)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'username' => 'Username atau password salah.',
+        // if (!$user || !Hash::check($request->password, $user->password)) {
+        //     throw ValidationException::withMessages([
+        //         'username' => 'Username atau password salah.',
+        //     ]);
+        // }
+
+        if (!$user || $request->password != $user->password) {
+        throw ValidationException::withMessages([
+            'username' => 'Username atau password salah.',
             ]);
         }
 

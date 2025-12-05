@@ -9,6 +9,11 @@ class PageController extends Controller
         return view('pages.home');
     }
 
+    public function welcome()
+    {
+        return view('pages.welcome');
+    }
+
     public function dashboard()
     {
         return view('pages.dashboard');

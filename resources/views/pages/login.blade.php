@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Login - Kebun Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light d-flex align-items-center" style="min-height: 100vh;">
+@extends('layouts.app')
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card shadow">
-                <div class="card-header text-center fw-bold">
-                    Login Kebun Admin
-                </div>
-                <div class="card-body">
+@section('title', 'Login')
 
 @section('content')
 <div class="flex items-center justify-center min-h-[70vh]">
