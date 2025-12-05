@@ -2,43 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class PageController extends Controller
 {
-    public function dashboard() {
+    public function home()
+    {
+        return view('pages.home');
+    }
+
+    public function welcome()
+    {
+        return view('pages.welcome');
+    }
+
+    public function dashboard()
+    {
         return view('pages.dashboard');
     }
 
-    public function dataPetani() {
-        return view('pages.data.petani');
+    public function data()
+    {
+        return view('pages.data');
     }
 
-    public function dataLahan() {
-        return view('pages.data.lahan');
+    public function operasional()
+    {
+        return view('pages.operasional');
     }
 
-    public function dataTanaman() {
-        return view('pages.data.tanaman');
-    }
-
-    public function pemupukan() {
-        return view('pages.operasional.pemupukan');
-    }
-
-    public function panen() {
-        return view('pages.operasional.panen');
-    }
-
-    public function perawatan() {
-        return view('pages.operasional.perawatan');
-    }
-
-    public function laporan() {
+    public function laporan()
+    {
         return view('pages.laporan');
     }
 
-    public function kalender() {
-        return view('pages.kalender');
+    public function jadwal()
+    {
+        return view('pages.jadwal');
     }
 }

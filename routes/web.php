@@ -4,25 +4,37 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetaniController;
 use App\Http\Controllers\LahanController;
 use App\Http\Controllers\TanamanController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\OperasionalController;
 
 Route::resource('petani', PetaniController::class);
 Route::resource('lahan', LahanController::class);
 Route::resource('tanaman', TanamanController::class);
 
 Route::get('/', [PageController::class, 'dashboard'])->name('dashboard');
+Route::get('/', [PageController::class, 'welcome'])->name('welcome');
+Route::get('/login', [AuthController::class, 'showLogin'])->middleware('guest')->name('login');
+Route::post('/login/process', [AuthController::class, 'loginProcess'])->name('processLogin');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-Route::prefix('data')->group(function () {
-    Route::get('/petani', [PageController::class, 'dataPetani'])->name('data.petani');
-    Route::get('/lahan', [PageController::class, 'dataLahan'])->name('data.lahan');
-    Route::get('/tanaman', [PageController::class, 'dataTanaman'])->name('data.tanaman');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+//     Route::get('/data', [PageController::class, 'data']);
+//     Route::get('/operasional', [PageController::class, 'operasional']);
+//     Route::get('/laporan', [PageController::class, 'laporan']);
+//     Route::get('/jadwal', [PageController::class, 'jadwal']);
+// });
 
-Route::prefix('operasional')->group(function () {
-    Route::get('/pemupukan', [PageController::class, 'pemupukan'])->name('operasional.pemupukan');
-    Route::get('/panen', [PageController::class, 'panen'])->name('operasional.panen');
-    Route::get('/perawatan', [PageController::class, 'perawatan'])->name('operasional.perawatan');
-});
+Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
 
 Route::get('/laporan', [PageController::class, 'laporan'])->name('laporan');
 Route::get('/kalender', [PageController::class, 'kalender'])->name('kalender');
+Route::prefix('operasional')->group(function () {
+    Route::get('/', [OperasionalController::class, 'index'])->name('operasional.index');
+    Route::get('/create', [OperasionalController::class, 'create'])->name('operasional.create');
+    Route::post('/store', [OperasionalController::class, 'store'])->name('operasional.store');
+    Route::get('/{id}/edit', [OperasionalController::class, 'edit'])->name('operasional.edit');
+    Route::put('/{id}', [OperasionalController::class, 'update'])->name('operasional.update');
+    Route::delete('/{id}', [OperasionalController::class, 'destroy'])->name('operasional.destroy');
+});
