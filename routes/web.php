@@ -1,7 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PetaniController;
+use App\Http\Controllers\LahanController;
+use App\Http\Controllers\TanamanController;
 use App\Http\Controllers\PageController;
+
+Route::resource('petani', PetaniController::class);
+Route::resource('lahan', LahanController::class);
+Route::resource('tanaman', TanamanController::class);
 
 Route::get('/', [PageController::class, 'dashboard'])->name('dashboard');
 
